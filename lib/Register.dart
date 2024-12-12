@@ -144,12 +144,13 @@ final TextEditingController confirmPasswordController = TextEditingController();
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
                                 final name = nameController.text;
-    final email = emailController.text;
-    final password = passwordController.text;
-    final confirmPassword = confirmPasswordController.text;
-     
-     saveUserData(name, email, password);
+                                final email = emailController.text;
+                                final password = passwordController.text;
+                                final confirmPassword = confirmPasswordController.text;
+                                
+                                saveUserData(name, email, password,);
 
+                                Navigator.of(context).pushNamed('/login');
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -202,29 +203,30 @@ final TextEditingController confirmPasswordController = TextEditingController();
   }
 
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
 
   Future<void> saveUserData(String name, String email, String password) async {
-    try {
-      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+  try {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
 
-      final String uid = userCredential.user!.uid;
+    // Register user with Firebase Authentication
+    await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
 
-      await _dbRef.child('users/$uid').set({
-        'name': name,
-        'email': email,
-        'password': password,
-      });
+    // Use push() to generate a unique key for each user
+    await _dbRef.child('users').push().set({
+      'name': name,
+      'email': email,
+      'password': password, // Avoid storing passwords in plaintext for security reasons
+    });
 
-      print('User data saved successfully!');
-    } catch (e) {
-      print('Failed to save user data: $e');
-      throw Exception('Error saving user data: $e');
-    }
+    print('User data saved successfully!');
+  } catch (e) {
+    print('Failed to save user data: $e');
+    throw Exception('Error saving user data: $e');
   }
-
+}
 }
