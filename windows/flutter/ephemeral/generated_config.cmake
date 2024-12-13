@@ -1,6 +1,6 @@
 # Generated code do not commit.
 file(TO_CMAKE_PATH "C:\\flutter" FLUTTER_ROOT)
-file(TO_CMAKE_PATH "C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius" PROJECT_DIR)
+file(TO_CMAKE_PATH "C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp" PROJECT_DIR)
 
 set(FLUTTER_VERSION "1.0.0+1" PARENT_SCOPE)
 set(FLUTTER_VERSION_MAJOR 1 PARENT_SCOPE)
@@ -11,14 +11,14 @@ set(FLUTTER_VERSION_BUILD 1 PARENT_SCOPE)
 # Environment variables to pass to tool_backend.sh
 list(APPEND FLUTTER_TOOL_ENVIRONMENT
   "FLUTTER_ROOT=C:\\flutter"
-  "PROJECT_DIR=C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius"
+  "PROJECT_DIR=C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp"
   "FLUTTER_ROOT=C:\\flutter"
-  "FLUTTER_EPHEMERAL_DIR=C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius\\windows\\flutter\\ephemeral"
-  "PROJECT_DIR=C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius"
-  "FLUTTER_TARGET=C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius\\lib\\main.dart"
+  "FLUTTER_EPHEMERAL_DIR=C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp\\windows\\flutter\\ephemeral"
+  "PROJECT_DIR=C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp"
+  "FLUTTER_TARGET=C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp\\lib\\main.dart"
   "DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9jNGNkNDhlMTg2NDYwYjMyZDQ0NTg1Y2UzYzEwMzI3MWFiNjc2MzU1Lw=="
   "DART_OBFUSCATION=false"
   "TRACK_WIDGET_CREATION=true"
   "TREE_SHAKE_ICONS=false"
-  "PACKAGE_CONFIG=C:\\Users\\ASUS\\Desktop\\Travel Genious\\travel_genius\\.dart_tool\\package_config.json"
+  "PACKAGE_CONFIG=C:\\Users\\ASUS\\Desktop\\travelgg\\TravelGenius-_MobileApp\\.dart_tool\\package_config.json"
 )

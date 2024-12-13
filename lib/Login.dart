@@ -40,15 +40,42 @@ final TextEditingController passwordController = TextEditingController();
                     ),
                     const SizedBox(height: 20),
                     // Title
-                    const Text(
-                      'Login',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.pinkAccent,
-                      ),
-                    ),
+                    ShaderMask(
+  shaderCallback: (Rect bounds) {
+    return LinearGradient(
+      colors: [
+        Color.fromARGB(255, 230, 19, 12),
+        Color.fromARGB(255, 167, 24, 59),
+        Color.fromARGB(255, 155, 103, 127),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ).createShader(bounds);
+  },
+  child: const Text(
+    'L o g i n',
+    textAlign: TextAlign.center,
+    style: TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto', // You can use a custom font by adding it to pubspec.yaml
+      shadows: [
+        Shadow(
+          offset: Offset(2, 2),
+          blurRadius: 4,
+          color: Colors.black26,
+        ),
+        Shadow(
+          offset: Offset(-2, -2),
+          blurRadius: 4,
+          color: Colors.white24,
+        ),
+      ],
+      color: Colors.white, // Required but overridden by ShaderMask
+    ),
+  ),
+),
+
                     const SizedBox(height: 20),
                     // Email Field
                     TextFormField(

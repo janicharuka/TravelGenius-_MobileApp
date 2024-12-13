@@ -52,15 +52,36 @@ final TextEditingController confirmPasswordController = TextEditingController();
                     ),
                     const SizedBox(height: 20),
                     // Title
-                    const Text(
-                      'Register',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.pinkAccent,
-                      ),
-                    ),
+                    ShaderMask(
+  shaderCallback: (Rect bounds) {
+    return LinearGradient(
+      colors: [
+        Color.fromARGB(255, 230, 19, 12),
+        Color.fromARGB(255, 167, 24, 59),
+        Color.fromARGB(255, 155, 103, 127),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ).createShader(bounds);
+  },
+  child: const Text(
+    'R e g i s t e r',
+    textAlign: TextAlign.center,
+    style: TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+      color: Colors.white, // This color is overridden by ShaderMask
+      shadows: [
+        Shadow(
+          offset: Offset(2, 2),
+          blurRadius: 6,
+          color: Colors.black38,
+        ),
+      ],
+    ),
+  ),
+),
+
                     const SizedBox(height: 20),
                     // Registration Form
                     Form(
@@ -68,75 +89,151 @@ final TextEditingController confirmPasswordController = TextEditingController();
                       child: Column(
                         children: [
                           // Name Field
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Name',
-                              prefixIcon: const Icon(Icons.person, color: Colors.pinkAccent),
-                              filled: true,
-                              fillColor: Colors.grey[850],
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
-                              ),
-                              labelStyle: const TextStyle(color: Colors.white70),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                            onSaved: (value) => name = value,
-                          ),
-                          const SizedBox(height: 16),
-                          // Email Field
-                          TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              prefixIcon: const Icon(Icons.email, color: Colors.pinkAccent),
-                              filled: true,
-                              fillColor: Colors.grey[850],
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
-                              ),
-                              labelStyle: const TextStyle(color: Colors.white70),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                            onSaved: (value) => email = value,
-                          ),
-                          const SizedBox(height: 16),
-                          // Password Field
-                          TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'Password',
-                              prefixIcon: const Icon(Icons.lock, color: Colors.pinkAccent),
-                              filled: true,
-                              fillColor: Colors.grey[850],
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
-                              ),
-                              labelStyle: const TextStyle(color: Colors.white70),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                            onSaved: (value) => password = value,
-                          ),
-                          const SizedBox(height: 16),
-                          // Confirm Password Field
-                          TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'Confirm Password',
-                              prefixIcon: const Icon(Icons.lock, color: Colors.pinkAccent),
-                              filled: true,
-                              fillColor: Colors.grey[850],
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
-                              ),
-                              labelStyle: const TextStyle(color: Colors.white70),
-                            ),
-                            style: const TextStyle(color: Colors.white),
-                            onSaved: (value) => confirmPassword = value,
-                          ),
+         AnimatedContainer(
+  duration: const Duration(milliseconds: 300), // Duration for the animation
+  decoration: BoxDecoration(
+    color: Colors.grey.withOpacity(0.3), // Semi-transparent background
+    borderRadius: BorderRadius.circular(40), // Rounded corners
+  ),
+  child: TextFormField(
+    decoration: InputDecoration(
+      labelText: 'Name',
+      prefixIcon: const Icon(Icons.person, color:  Color.fromARGB(255, 236, 81, 9)),
+      filled: true,
+      fillColor: Colors.transparent, // Transparent background
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40), // Rounded corners
+        borderSide: BorderSide.none,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.white70,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+      ),
+    ),
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+    onSaved: (value) => name = value,
+  ),
+),
+
+const SizedBox(height: 16),
+
+// Email Field
+AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  decoration: BoxDecoration(
+    color: Colors.grey.withOpacity(0.3),
+    borderRadius: BorderRadius.circular(40),
+  ),
+  child: TextFormField(
+    keyboardType: TextInputType.emailAddress,
+    decoration: InputDecoration(
+      labelText: 'Email',
+      prefixIcon: const Icon(Icons.email, color:  Color.fromARGB(255, 236, 81, 9)),
+      filled: true,
+      fillColor: Colors.transparent,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40),
+        borderSide: BorderSide.none,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.white70,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+      ),
+    ),
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+    onSaved: (value) => email = value,
+  ),
+),
+
+const SizedBox(height: 16),
+
+// Password Field
+AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  decoration: BoxDecoration(
+    color: Colors.grey.withOpacity(0.3),
+    borderRadius: BorderRadius.circular(40),
+  ),
+  child: TextFormField(
+    obscureText: true,
+    decoration: InputDecoration(
+      labelText: 'Password',
+      prefixIcon: const Icon(Icons.lock, color: Color.fromARGB(255, 236, 81, 9)),
+      filled: true,
+      fillColor: Colors.transparent,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40),
+        borderSide: BorderSide.none,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.white70,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+      ),
+    ),
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+    onSaved: (value) => password = value,
+  ),
+),
+
+const SizedBox(height: 16),
+
+// Confirm Password Field
+AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  decoration: BoxDecoration(
+    color: Colors.grey.withOpacity(0.3),
+    borderRadius: BorderRadius.circular(40),
+  ),
+  child: TextFormField(
+    obscureText: true,
+    decoration: InputDecoration(
+      labelText: 'Confirm Password',
+      prefixIcon: const Icon(Icons.lock, color:  Color.fromARGB(255, 236, 81, 9)),
+      filled: true,
+      fillColor: Colors.transparent,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40),
+        borderSide: BorderSide.none,
+      ),
+      labelStyle: const TextStyle(
+        color: Colors.white70,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+      ),
+    ),
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+    onSaved: (value) => confirmPassword = value,
+  ),
+),
+
+
                           const SizedBox(height: 20),
                           // Register Button
                           ElevatedButton(
