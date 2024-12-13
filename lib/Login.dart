@@ -78,66 +78,185 @@ final TextEditingController passwordController = TextEditingController();
 
                     const SizedBox(height: 20),
                     // Email Field
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        prefixIcon: const Icon(Icons.email, color: Colors.pinkAccent),
-                        filled: true,
-                        fillColor: Colors.grey[850],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        labelStyle: const TextStyle(color: Colors.white70),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                  AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  decoration: BoxDecoration(
+    color: Colors.black.withOpacity(0.4), // Semi-transparent background
+    borderRadius: BorderRadius.circular(40), // Rounded corners
+    border: Border.all(
+      color: Colors.pinkAccent.withOpacity(0.8),
+      width: 1.5,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.2),
+        blurRadius: 8,
+        offset: const Offset(2, 4),
+      ),
+    ],
+  ),
+  child: TextFormField(
+    obscureText: true,
+    controller: passwordController,
+    decoration: InputDecoration(
+      labelText: 'Password',
+      labelStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+        color: Colors.white70,
+      ),
+      prefixIcon: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return const LinearGradient(
+            colors: [
+              Color.fromARGB(255, 252, 10, 2),
+              Color.fromARGB(255, 245, 115, 148),
+              Color.fromARGB(255, 241, 197, 218),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds);
+        },
+        child: const Icon(
+          Icons.lock,
+          size: 24,
+          color: Colors.white, // The color will be overridden by the ShaderMask
+        ),
+      ),
+      filled: true,
+      fillColor: Colors.transparent, // Keeps the container's transparency intact
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+    ),
+    cursorColor: Colors.pinkAccent,
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+  ),
+),
+
                     const SizedBox(height: 16),
                     // Password Field
-                    TextFormField(
-                      obscureText: true,
-                       controller: passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        prefixIcon: const Icon(Icons.lock, color: Colors.pinkAccent),
-                        filled: true,
-                        fillColor: Colors.grey[850],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        labelStyle: const TextStyle(color: Colors.white70),
-                      ),
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  decoration: BoxDecoration(
+    color: Colors.black.withOpacity(0.4), // Semi-transparent background
+    borderRadius: BorderRadius.circular(40), // Rounded corners
+    border: Border.all(
+      color: Colors.pinkAccent.withOpacity(0.8),
+      width: 1.5,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.2),
+        blurRadius: 8,
+        offset: const Offset(2, 4),
+      ),
+    ],
+  ),
+  child: TextFormField(
+    obscureText: true,
+    controller: passwordController,
+    decoration: InputDecoration(
+      labelText: 'Password',
+      labelStyle: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Roboto',
+        color: Colors.white70,
+      ),
+      prefixIcon: ShaderMask(
+        shaderCallback: (Rect bounds) {
+          return const LinearGradient(
+            colors: [
+             Color.fromARGB(255, 252, 10, 2),
+              Color.fromARGB(255, 245, 115, 148),
+              Color.fromARGB(255, 241, 197, 218),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds);
+        },
+        child: const Icon(
+          Icons.lock,
+          size: 24,
+          color: Colors.white, // The color will be overridden by the ShaderMask
+        ),
+      ),
+      filled: true,
+      fillColor: Colors.transparent, // Keeps the container's transparency intact
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(40),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+    ),
+    cursorColor: Colors.pinkAccent,
+    style: const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Roboto',
+    ),
+  ),
+),
+
                     const SizedBox(height: 20),
                     // Login Button
-                    ElevatedButton(
-                      onPressed: () {
-                        final email = emailController.text;
-        final password = passwordController.text;
+                   AnimatedContainer(
+  duration: const Duration(milliseconds: 300),
+  curve: Curves.easeInOut,
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        const Color.fromARGB(255, 255, 49, 117).withOpacity(0.8),
+        const Color.fromARGB(255, 215, 47, 245).withOpacity(0.8),
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    ),
+    borderRadius: BorderRadius.circular(25),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        blurRadius: 10,
+        offset: const Offset(4, 4),
+      ),
+    ],
+  ),
+  child: ElevatedButton(
+    onPressed: () {
+      final email = emailController.text;
+      final password = passwordController.text;
+      authenticate(email, password);
+    },
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.transparent, // Makes background transparent to use gradient
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      shadowColor: Colors.transparent, // Removes default shadow to make it clean
+    ),
+    child: const Text(
+      'JOIN',
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Roboto', // Advanced font style
+        color: Color.fromARGB(169, 255, 255, 255), // Text color
+      ),
+    ),
+  ),
+),
 
-
-                        authenticate(email, password);
-
-
-
-                        
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    ),
                     const SizedBox(height: 16),
                     // Register Link
                     Row(

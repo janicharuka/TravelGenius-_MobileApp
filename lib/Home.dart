@@ -5,80 +5,87 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TravelGenius'),
+        title: Text('TravelGenius', style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold)),
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
       ),
-      body: ListView(
+      body: Stack( // Using Stack to position elements on top of each other
         children: [
-          // Hero Section
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/hero.jpg'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.5),
-                  BlendMode.darken,
+          ListView(
+            children: [
+              // Hero Section with Gradient and Animation
+              AnimatedContainer(
+                duration: const Duration(seconds: 1),
+                padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/hero.jpg'),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.5),
+                      BlendMode.darken,
+                    ),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Welcome to TravelGenius',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins', // Advanced font
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Discover amazing destinations.',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 248, 182, 182),
+                        fontSize: 18,
+                        fontFamily: 'Roboto', // Advanced font
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20),
+                    AnimatedButton(
+                      text: 'Join Now',
+                      backgroundColor: Colors.deepOrange,
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/login');
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    // Register button will now be positioned in the upper-right corner
+                    SectionTitle(title: 'Popular Destinations'),
+                    DestinationGrid(),
+
+                    // Featured Hotels Section
+                    SectionTitle(title: 'Featured Hotels'),
+                    HotelGrid(),
+
+                    // Featured Activities Section
+                    SectionTitle(title: 'Featured Activities'),
+                    ActivityGrid(),
+                  ],
                 ),
               ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Welcome to TravelGenius',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Discover amazing destinations.',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange,
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  ),
-                  child: Text('Join Now'),
-                ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/Reg');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  ),
-                  child: Text('Register'),
-                ),
-              ],
+            ],
+          ),
+          Positioned(
+            top: 2.0, // Distance from the top of the screen
+            right: 2.0, // Distance from the right side of the screen
+            child: AnimatedButton(
+              text: 'Register',
+              backgroundColor: Color.fromARGB(0, 229, 233, 240),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/Reg');
+              },
             ),
           ),
-          SizedBox(height: 20),
-
-          // Popular Destinations Section
-          SectionTitle(title: 'Popular Destinations'),
-          DestinationGrid(),
-
-          // Featured Hotels Section
-          SectionTitle(title: 'Featured Hotels'),
-          HotelGrid(),
-
-          // Featured Activities Section
-          SectionTitle(title: 'Featured Activities'),
-          ActivityGrid(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -119,6 +126,7 @@ class SectionTitle extends StatelessWidget {
           fontSize: 24,
           fontWeight: FontWeight.bold,
           color: Colors.orange,
+          fontFamily: 'Poppins', // Advanced font
         ),
       ),
     );
@@ -230,14 +238,20 @@ class DestinationCard extends StatelessWidget {
     return Card(
       elevation: 5,
       margin: EdgeInsets.all(10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20), // Rounded corners
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-              width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
           Padding(
@@ -247,6 +261,7 @@ class DestinationCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins', // Advanced font
               ),
             ),
           ),
@@ -258,6 +273,51 @@ class DestinationCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// Animated Button Widget
+class AnimatedButton extends StatelessWidget {
+  final String text;
+  final Color backgroundColor;
+  final VoidCallback onPressed;
+
+  AnimatedButton({required this.text, required this.backgroundColor, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 8,
+            offset: Offset(2, 2),
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Poppins', // Advanced font
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
