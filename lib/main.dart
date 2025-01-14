@@ -5,6 +5,7 @@ import 'package:travel_genius/Home.dart';
 import 'package:travel_genius/Login.dart';
 import 'package:travel_genius/Register.dart';
 import 'package:travel_genius/About.dart';
+import 'package:travel_genius/map.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
        '/Reg':(context) => RegisterPage(),
        '/Home':(context) => HomePage(),
        '/about': (context) => AboutPage(),
+        '/map': (context) => mapPage(),
 
 
 
